@@ -33,6 +33,11 @@ def heartbeat():
     off()
     sleep(.2)
     on()
+    
+def test():
+    off()
+    sleep(1)
+    on()
 
 def on():
     set_pin(1)
