@@ -1,11 +1,13 @@
 import discord
 import os
+from dotenv import load_dotenv
 from discord.ext import commands
 from time import sleep
 import math
 from threading import Thread
 
-TOKEN = 'MTA1NDU3MDUxNzQzODQwMjY2MQ.GcE-XD.QnhiKY0zeTH0fWLQ0t6jcFACGKrT2SJGD8R2Ko'
+load_dotenv()
+TOKEN = os.environ.get("API_TOKEN")
 
 intents = discord.Intents.default()
 intents.message_content = True
@@ -82,3 +84,4 @@ async def on_message(message):
 
 
 client.run(TOKEN)
+
