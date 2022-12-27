@@ -7,7 +7,7 @@ import math
 from threading import Thread
 
 load_dotenv()
-TOKEN = os.environ.get("API_TOKEN")
+TOKEN = os.environ.get("TOKEN")
 
 intents = discord.Intents.default()
 intents.message_content = True
