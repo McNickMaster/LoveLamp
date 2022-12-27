@@ -38,6 +38,10 @@ def test():
     off()
     sleep(1)
     on()
+    sleep(1)
+    off()
+    sleep(1)
+    on()
 
 def on():
     set_pin(1)
