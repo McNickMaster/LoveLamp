@@ -59,6 +59,8 @@ def gn():
     sleeping = True
     off()
 
+def reboot():
+    os.popen('sudo reboot')
 
 
 @client.event
@@ -92,7 +94,11 @@ async def on_message(message):
 
     if(content == 'lamp off'):
         gn()
-    #print(message.author, message.content, message.channel.id)
+        
+    if(content == 'lamp reboot'):
+        reboot()
+        
+    print(message.author, message.content, message.channel.id)
 
 
 client.run(TOKEN)
