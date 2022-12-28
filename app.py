@@ -5,6 +5,7 @@ from discord.ext import commands
 from time import sleep
 import math
 from threading import Thread
+import string
 
 load_dotenv()
 TOKEN = os.environ.get("TOKEN")
@@ -44,20 +45,22 @@ def test():
     on()
 
 def on():
-    set_pin(1)
-    sleep(0.1)
+    if(not sleeping):
+        set_pin(1)
+        sleep(0.1)
 
 def off():
-    set_pin(0)
-    sleep(0.1)
+    if(not sleeping):
+        set_pin(0)
+        sleep(0.1)
 
 def gm():
-    sleeping = False
     on()
+    sleeping = False
 
 def gn():
-    sleeping = True
     off()
+    sleeping = True
 
 def reboot():
     os.popen('sudo reboot')
@@ -72,9 +75,15 @@ async def on_ready():
 async def on_message(message):
     
     content = (message.content).lower()
+    author = message.author.name
     
-    if((message.author == 'melfie#5268')):
+    if 'melfie' in author:
         sleeping = False
+        if(content == 'gn' or content == 'off'):
+            gn()
+
+        if(content == 'on'):
+            gm()
 
     if(content == 'imy' or content == 'wyd' or content == 'hyd'):
         print('sending love')
@@ -85,11 +94,7 @@ async def on_message(message):
         heartbeat()
 
     
-    if((message.author == 'melfie#5268') and ((content == 'gn') or (content == 'off'))):
-        gn()
-
-    if((message.author == 'melfie#5268') and (content == 'on')):
-        gm()
+    
 
 
     if(content == 'lamp off'):
@@ -98,7 +103,7 @@ async def on_message(message):
     if(content == 'lamp reboot'):
         reboot()
         
-    print(message.author, message.content, message.channel.id)
+    print(author, content)
 
 
 client.run(TOKEN)
