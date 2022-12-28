@@ -68,26 +68,29 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
+    
+    content = (message.content).lower()
+    
     if((message.author == 'melfie#5268')):
         sleeping = False
 
-    if(message.content == 'imy' or message.content == 'wyd' or message.content == 'hyd'):
+    if(content == 'imy' or content == 'wyd' or content == 'hyd'):
         print('sending love')
         blink()
     
-    if(message.content == 'mwah' or message.content == 'ily'):
+    if(content == 'mwah' or content == 'ily'):
         print('sending love')
         heartbeat()
 
     
-    if((message.author == 'melfie#5268') and ((message.content == 'gn') or (message.content == 'off'))):
+    if((message.author == 'melfie#5268') and ((content == 'gn') or (content == 'off'))):
         gn()
 
-    if((message.author == 'melfie#5268') and (message.content == 'on')):
+    if((message.author == 'melfie#5268') and (content == 'on')):
         gm()
 
 
-    if(message.content == 'lamp off'):
+    if(content == 'lamp off'):
         gn()
     #print(message.author, message.content, message.channel.id)
 
